@@ -35,8 +35,8 @@ SIGMA_skill = 0.5 # Its the one thats sets real skills
 NUM_BAD_TEAMS = 4
 NUM_GOOD_TEAMS = 2
 MU_bad = 0
-MU_med = 1
-MU_good = 2
+MU_med = 0.5
+MU_good = 1
 SIGMA = 5
 BETA = 1
 GAMMA = 0.1
@@ -130,17 +130,17 @@ trueskill_mu = dict()
 trueskill_sigma = dict()
 
 for player_id in range(NUM_PLAYERS*NUM_TEAMS):
-    trueskill_mu[player_id] = []
-    trueskill_sigma[player_id] = []
+    trueskill_mu[str(player_id)] = []
+    trueskill_sigma[str(player_id)] = []
 
 print(h)
 for player_id in range(NUM_PLAYERS*NUM_TEAMS) :
     for batch in h.learning_curves()[str(player_id)]:
-        trueskill_mu[player_id].append(batch[1].mu)
-        trueskill_sigma[player_id].append(batch[1].sigma)
-    if len(trueskill_mu[player_id])<46:
+        trueskill_mu[str(player_id)].append(batch[1].mu)
+        trueskill_sigma[str(player_id)].append(batch[1].sigma)
+    if len(trueskill_mu[str(player_id)])<46:
         for i in range(8):
-            trueskill_mu[player_id].append(trueskill_mu[player_id][-1])
+            trueskill_mu[str(player_id)].append(trueskill_mu[str(player_id)][-1])
 
 df = pd.DataFrame.from_dict(trueskill_mu)
 df = df.transpose()

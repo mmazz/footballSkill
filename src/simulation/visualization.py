@@ -9,17 +9,17 @@ data_save_dir = root / "reports/img"
 
 csv_path = data_load_dir / 'syntethic.csv'
 df = pd.read_csv(csv_path)
-
+print(df.head())
 messi = df.iloc[0]
-companero = df.iloc[2]
-
-companero0 = df.iloc[11]
+companero = df.iloc[1] # es compa�eo de seleccion tambien...
+companero0 = df.iloc[2]
 companero1 = df.iloc[22]
 companero2 = df.iloc[44]
 
 messi.plot()
-companero.plot()
-#companero0.plot()
+#companero.plot()
+companero0.plot()
 #companero1.plot()
 #companero2.plot()
+plt.legend()
 plt.show()
